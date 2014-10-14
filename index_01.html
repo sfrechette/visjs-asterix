@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+	<title>Astérix | Network Graph</title>
+
+ 	<style>
+    	body {
+    		font: 10pt calibri, arial;
+    		color: gray;
+    	}
+    	#mynetwork {
+      		width: 1800px;
+      		height: 1200px;
+      		border: 0px solid white;
+      		background: white;
+    	}
+  	</style>
+
+ 	<script type="text/javascript" src="node_modules/vis/dist/vis.min.js"></script>
+  	<link href="node_modules/vis/dist/vis.min.css" rel="stylesheet" type="text/css" />
+  	<script type="text/javascript">
+    
+    var DIR = 'images/';
+
+    var nodes = null;
+    var edges = null;
+    var network = null;
+
+    function draw() {
+    	// create characters and albums
+      	nodes = [
+			{id:12, value: 10, label:'Assurancetourix', image: DIR + '12_m.gif', shape: 'image'},
+			{id:27, value: 10, label:'Briseradius', image: DIR + '27_m.gif', shape: 'image'},
+			{id:28, value: 10, label:'Brutus', image: DIR + '28_m.gif', shape: 'image'},
+			{id:34, value: 10, label:'Caius Obtus', image: DIR + '34_m.gif', shape: 'image'},
+			{id:38, value: 10, label:'Caligula Alavacomgetepus', image: DIR + '38_m.gif', shape: 'image'},
+			{id:44, value: 10, label:'Césarion (Ptolémée XVI)', image: DIR + '44_m.gif', shape: 'image'},
+			{id:56, value: 10, label:'Cléôpatre', image: DIR + '56_m.gif', shape: 'image'},
+			{id:65, value: 10, label:'Epidemaïs', image: DIR + '65_m.gif', shape: 'image'},
+			{id:91, value: 10, label:'Jules César', image: DIR + '91_m.gif', shape: 'image'},
+			{id:104, value: 10, label:'Lupus', image: DIR + '104_m.gif', shape: 'image'},
+			{id:116, value: 10, label:'Numérobis', image: DIR + '116_m.gif', shape: 'image'},
+			{id:1001, value: 10, label:'Astérix le Gaulois', image: DIR + '1001_a.gif', shape: 'image'},
+			{id:1004, value: 10, label:'Astérix le Gladiateur', image: DIR + '1004_a.gif', shape: 'image'},
+			{id:1006, value: 10, label:'Astérix et Cléôpatre', image: DIR + '1006_a.gif', shape: 'image'},
+			{id:1008, value: 10, label:'Astérix chez les Bretons', image: DIR + '1008_a.gif', shape: 'image'},
+			{id:1010, value: 10, label:'Astérix légionnaire', image: DIR + '1010_a.gif', shape: 'image'},
+			{id:1011, value: 10, label:'Le Bouclier averne', image: DIR + '1011_a.gif', shape: 'image'},
+			{id:1014, value: 10, label:'Astérix en Hispanie', image: DIR + '1014_a.gif', shape: 'image'},
+			{id:1015, value: 10, label:'La Zizanie', image: DIR + '1015_a.gif', shape: 'image'},
+			{id:1017, value: 10, label:'Le Domaine des dieux', image: DIR + '1017_a.gif', shape: 'image'},
+			{id:1018, value: 10, label:'Les Lauriers de César', image: DIR + '1018_a.gif', shape: 'image'},
+			{id:1019, value: 10, label:'Le Devin', image: DIR + '1019_a.gif', shape: 'image'},
+			{id:1021, value: 10, label:'Le Cadeau de César', image: DIR + '1021_a.gif', shape: 'image'},
+			{id:1023, value: 10, label:'Obélix er Compagnie', image: DIR + '1023_a.gif', shape: 'image'},
+			{id:1024, value: 10, label:'Astérix chez les Belges', image: DIR + '1024_a.gif', shape: 'image'},
+			{id:1026, value: 10, label:'L’Odyssée d’Astérix', image: DIR + '1026_a.gif', shape: 'image'},
+			{id:1027, value: 10, label:'Le Fils d’Astérix', image: DIR + '1027_a.gif', shape: 'image'},
+			{id:1028, value: 10, label:'Astérix chez Rahazade', image: DIR + '1028_a.gif', shape: 'image'},
+			{id:1029, value: 10, label:'La Rose et le glaive', image: DIR + '1029_a.gif', shape: 'image'},
+			{id:1030, value: 10, label:'La Galère d’Obélix', image: DIR + '1030_a.gif', shape: 'image'},
+			{id:1031, value: 10, label:'Astérix et Latraviata', image: DIR + '1031_a.gif', shape: 'image'},
+			{id:1032, value: 10, label:'Astérix et la rentrée gauloise', image: DIR + '1032_a.gif', shape: 'image'},
+			{id:1034, value: 10, label:'L’Anniversaire d’Astérix et Obélix - Le Livre d’or', image: DIR + '1034_a.gif', shape: 'image'},
+			{id:1035, value: 10, label:'Astérix chez les Pictes', image: DIR + '1035_a.gif', shape: 'image'}
+		];
+
+
+		// create relationships: fellow_compagnon and appeared_in
+   		edges = [
+      		{from: 56, to: 44},
+      		{from: 56, to: 91},
+      		{from: 56, to: 116},
+      		{from: 44, to: 91},
+      		{from: 91, to: 34},
+      		{from: 91, to: 38},
+      		{from: 91, to: 28},
+      		{from: 34, to: 12},
+      		{from: 34, to: 27},
+      		{from: 34, to: 65},
+      		{from: 34, to: 104},
+      		{from: 38, to: 12},
+      		{from: 28, to: 44},
+      		{from: 27, to: 104},
+			{from: 56, to: 1006},
+      		{from: 56, to: 1027},
+      		{from: 56, to: 1030},
+      		{from: 56, to: 1034},
+      		{from: 91, to: 1001},
+      		{from: 91, to: 1004},
+      		{from: 91, to: 1006},
+      		{from: 91, to: 1008},
+      		{from: 91, to: 1010},
+      		{from: 91, to: 1011},
+			{from: 91, to: 1014},
+			{from: 91, to: 1015},
+			{from: 91, to: 1017},
+			{from: 91, to: 1018},
+			{from: 91, to: 1019},
+			{from: 91, to: 1021},
+			{from: 91, to: 1023},
+			{from: 91, to: 1024},
+			{from: 91, to: 1026},
+			{from: 91, to: 1028},
+			{from: 91, to: 1029},
+			{from: 91, to: 1030},
+			{from: 91, to: 1031},
+			{from: 91, to: 1032},
+			{from: 91, to: 1034},
+			{from: 91, to: 1035},
+			{from: 44, to: 1027},
+			{from: 116, to: 1006},
+			{from: 116, to: 1034},
+			{from: 34, to: 1004},
+			{from: 38, to: 1004},
+			{from: 28, to: 1004},
+			{from: 28, to: 1015},
+			{from: 28, to: 1019},
+			{from: 28, to: 1027},
+			{from: 27, to: 1004},
+			{from: 65, to: 1004},
+			{from: 65, to: 1026},
+			{from: 65, to: 1034},
+			{from: 104, to: 1004}
+		];
+      
+      	// create a network
+      	var container = document.getElementById('mynetwork');
+      	var data = {
+        	nodes: nodes,
+        	edges: edges
+      	};
+      	var options = {
+      		stabilize: false,
+      		
+      		nodes: {
+      			fontSize: 10,
+      			widthMin: 50,  // min width in pixels
+          		widthMax: 70  // max width in pixels
+      		},
+      		edges: {
+      			width: 1
+      			},
+      	};
+      	network = new vis.Network(container, data, options);
+    }
+  </script>
+</head>
+
+<body onload="draw()">
+Astérix Network Graph | <a href="https://twitter.com/sfrechette" target="_blank">@sfrechette</a>
+<div id="mynetwork"></div>
+<p>
+<div id="info"></div>
+</body>
+</html>		
