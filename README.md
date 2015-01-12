@@ -4,7 +4,7 @@
 
 * Edges (Links): fellow_companion and appeared_in 
 
-![alt tag](https://raw.githubusercontent.com/sfrechette/sfrechette.github.io/master/images/nw_graph.png)
+![alt tag](https://raw.githubusercontent.com/sfrechette/visjs-asterix/master/images/nw_graph.png)
 
 
 Source: http://www.asterix.com 
